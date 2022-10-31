@@ -29,7 +29,7 @@ subprocess.run(["git", "clone", "https://github.com/kurisufriend/cathedral", "/v
 subprocess.run(["cp", "-r", "/var/cathedral/tools/skel/*", "/etc/skel/"])
 
 # * create new cathedral user
-subprocess.run(["useradd", "-c", "cathedral", "-M", "-s", "/usr/bin/nologin"])
+subprocess.run(["useradd", "-c", "cathedral", "-M", "cathedral"])
 
 # * give the new user recursive ownership of /var/cathedral
 subprocess.run(["chown", "-R", "cathedral:cathedral", "/var/cathedral"])
