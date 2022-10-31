@@ -1,0 +1,12 @@
+[Unit]
+Description=erect the cathedral!
+Documentation=https://github.com/kurisufriend/cathedral
+
+[Service]
+User=cathedral
+Group=cathedral
+ExecStart=python3 /var/cathedral/main.py --cfg /var/cathedral/config.json
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
