@@ -1,3 +1,5 @@
 {
+    "host": "localhost",
+    "port": 1337,
     "PLUGIN_PATH": "./towers"
 }

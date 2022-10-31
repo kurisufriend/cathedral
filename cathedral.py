@@ -13,7 +13,7 @@ class cathedral():
         runner = web.ServerRunner(srv)
         await runner.setup()
 
-        site = web.TCPSite(runner, "localhost", 1488)
+        site = web.TCPSite(runner, self.cfg.get("host"), self.cfg.get("port"))
         await site.start()
 
         print("serving...")
