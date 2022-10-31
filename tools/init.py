@@ -15,7 +15,7 @@ cathedral:.:.:.:/var/cathedral:/usr/bin/nologin
 """
 
 
-if not(subprocess.run(["id", "-u"]) == 0):
+if not(int(subprocess.check_output(["id", "-u"])) == 0):
     print("this script must be run as root")
     exit(-1)
 
@@ -29,7 +29,7 @@ subprocess.run(["git", "clone", "https://github.com/kurisufriend/cathedral", "/v
 subprocess.run(["cp", "-r", "/var/cathedral/tools/skel/*", "/etc/skel"])
 
 # * create new cathedral user
-subprocess.run(["useradd", "-c", "cathedral", "-d", "/var/cathedral", "-M", "-s", "/usr/bin/nologin"])
+subprocess.run(["useradd", "-c", "cathedral", "-M", "-s", "/usr/bin/nologin"])
 
 # * give the new user recursive ownership of /var/cathedral
 subprocess.run(["chown", "-R", "cathedral:cathedral", "/var/cathedral"])
