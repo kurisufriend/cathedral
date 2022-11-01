@@ -1,13 +1,20 @@
 from tower_manager import load_towers, handle_route
 import asyncio
 from aiohttp import web
+from re import compile, match
+import auth
 
 class cathedral():
     def __init__(self, settings):
         self.cfg = settings
         self.towers = load_towers(self.cfg.get("PLUGIN_PATH"))
+        self.auth = auth
     async def handle_http(self, r):
-        return web.Response(text=f"lol dongs {r.host}")
+        for t in self.towers:
+            for h in t.hooks:
+                if compile(h.replace("$HOST", self.cfg.get("host"))).match(str(r.url)):
+                    return web.Response(**t.run(self, r))
+        return web.Response(body=f"lol dongs {r.url}")
     async def start_http(self):
         srv = web.Server(self.handle_http)
         runner = web.ServerRunner(srv)
@@ -16,7 +23,7 @@ class cathedral():
         site = web.TCPSite(runner, self.cfg.get("host"), self.cfg.get("port"))
         await site.start()
 
-        print("serving...")
+        print(f"serving @ {self.cfg.get('host')}:{self.cfg.get('port')}...")
         await asyncio.sleep(3600*24*365)
     def erect(self):
         l = asyncio.get_event_loop()
