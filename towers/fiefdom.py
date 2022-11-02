@@ -1,3 +1,5 @@
+import pathlib
+
 hooks = ["http.*:\/\/$HOST\/~.*"]
 
 def run(ctx, r):
@@ -12,7 +14,15 @@ def run(ctx, r):
         }
     
     requested = "/index.html" if route == "/" else route
-    try: f = open(f"/home/{user}/.web/{requested}").read()
+    requested = f"/home/{user}/.web/{requested}"
+
+    if not(str(pathlib.Path(requested).resolve()).startswith(f"/home/{user}/.web/")):
+        return {
+            "body": f"<h3>403! illegal path!</h3><br>you are not allowed access to {requested}!", 
+            "status": 403, "content_type": "text/html"
+        }
+
+    try: f = open(requested).read()
     except:
         return {
             "body": f"<h3>404! no such path {requested}</h3><br>double check the path exists in your <b>~/.web</b> directory!", 
