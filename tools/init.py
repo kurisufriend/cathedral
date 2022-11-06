@@ -26,6 +26,7 @@ subprocess.run(["mkdir", "/var/cathedral"])
 subprocess.run(["git", "clone", "https://github.com/kurisufriend/cathedral", "/var/cathedral"])
 
 # * copy new template files to /etc/skel
+subprocess.run(["shopt", "-s", "dotglob"])
 subprocess.run("cp -r /var/cathedral/tools/skel/* /etc/skel/", shell=True)
 
 # * create new cathedral user
