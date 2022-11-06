@@ -10,8 +10,8 @@ def get_real_users():
 def add_user(u, p):
     p = crypt.crypt(p, crypt.mksalt())
     subprocess.run(["useradd", "-m", "-p", p, u])
-    subprocess.run("setfacl", "--recursive", "--modify", f"user:{u}:r", f"/home/{user}/.web")
-    subprocess.run("setfacl", "--recursive", "--modify", f"default:user:{u}:r", f"/home/{user}/.web")
+    subprocess.run(["setfacl", "--recursive", "--modify", f"user:{u}:r", f"/home/{u}/.web"])
+    subprocess.run(["setfacl", "--recursive", "--modify", f"default:user:{u}:r", f"/home/{u}/.web"])
 
 """
 e.g.
