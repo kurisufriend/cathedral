@@ -11,8 +11,8 @@ def get_real_users():
 def add_user(u, p):
     p = crypt.crypt(p, crypt.mksalt())
     subprocess.run(["useradd", "-m", "-p", p, u])
-    subprocess.run(["setfacl", "--recursive", "--modify", f"user:{u}:r", f"/home/{u}/.web"])
-    subprocess.run(["setfacl", "--recursive", "--modify", f"default:user:{u}:r", f"/home/{u}/.web"])
+    # adding a new user resets the permission table...
+    subprocess.run(["setfacl", "-m", "u:cathedral:r", "/etc/shadow"])
 
 """
 e.g.
