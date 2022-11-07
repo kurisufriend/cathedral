@@ -9,4 +9,4 @@ def authenticate(u, p):
 
 def get_real_users():
     f = [i.split(":") for i in open("/etc/shadow").read().split("\n")]
-    return [i[0] for i in filter(lambda a: len(a) > 1, f) if not(i[1] in ["*", "!"])]
+    return [i[0] for i in filter(lambda a: len(a) > 1, f) if not(i[1] in ["*", "!", "!!", "!*"])]
