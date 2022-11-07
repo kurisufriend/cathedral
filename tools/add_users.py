@@ -2,6 +2,7 @@ import subprocess
 import crypt
 import json
 import secrets
+from sys import argv
 
 def get_real_users():
     f = [i.split(":") for i in open("/etc/shadow").read().split("\n")]
@@ -37,4 +38,4 @@ def generate_list_from_emails(infile):
         add_user(usr, pwd)
     print(key)
 
-generate_list_from_emails("./testmails")
+generate_list_from_emails(argv[1])
