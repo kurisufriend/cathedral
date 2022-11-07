@@ -33,8 +33,9 @@ def generate_list_from_emails(infile):
         usr = addy.split("@")[0]
         if usr in cur:
             continue
-        pwd = crypt.crypt(secrets.token_urlsafe(10), crypt.mksalt())
-        key.append((usr, pwd))
+        opwd = secrets.token_urlsafe(10)
+        pwd = crypt.crypt(opwd, crypt.mksalt())
+        key.append((usr, opwd))
         add_user(usr, pwd)
     print(key)
 
