@@ -1,3 +1,23 @@
+                          |                                                                         
+                         -+-                                                                        
+                          |                                                                         
+                          |                                                                         
+                         /^\                                                                        
+                        /   \                                                                       
+                       /     \                                                                      
+                     _/       \_                                                                    
+                    //         \\                                                                   
+                   /-           -\                                                                  
+                  /               \                                                                 
+                 /|  「cathedral」  |\                                                                
+                / |               | \                                                               
+                | |               | |                                                               
+                | |               | |                                                               
+                | |       __      | |                                                               
+                | |      |  |     | |                                                               
+                | |      | .|     | |                                                               
+                |_|______|__|_____|_|                                                               
+
 the core of a plugin-based usergroup system.
 establishes a central auth for users, and loads plugins to carry out various functions based on events.
 
