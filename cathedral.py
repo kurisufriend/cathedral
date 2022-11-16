@@ -12,9 +12,10 @@ class cathedral():
     async def handle_http(self, r):
         for t in self.towers:
             for h in t.hooks:
-                if compile(h.replace("$HOST", self.cfg.get("host") if self.cfg.get("port") == 80 else self.cfg.get("host")+":"+str(self.cfg.get("port")))).match(str(r.url)):
+                print(str(r.host)[str(r.host).find(self.cfg.get("host")):])
+                if compile(h.replace("$HOST", str(r.host)[str(r.host).find(self.cfg.get("host")):])).match(str(r.url)):
                     return web.Response(**t.run(self, r))
-        return web.Response(body=f"lol dongs {r.url}")
+        return web.Response(body=f"usergroup homepage")
     async def start_http(self):
         srv = web.Server(self.handle_http)
         runner = web.ServerRunner(srv)
