@@ -13,6 +13,7 @@ def add_user(u, p):
     subprocess.run(["useradd", "-m", "-p", p, u])
     # adding a new user resets the permission table...
     subprocess.run(["setfacl", "-m", "u:cathedral:r", "/etc/shadow"])
+    subprocess.run(["setfacl", "-R", "-m", "user:cathedral:rx", f"/home/{u}"])
 
 """
 e.g.
