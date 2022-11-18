@@ -12,8 +12,7 @@ class cathedral():
     async def handle_http(self, r):
         for t in self.towers:
             for h in t.hooks:
-                print(str(r.host)[str(r.host).find(self.cfg.get("host")):])
-                if compile(h.replace("$HOST", str(r.host)[str(r.host).find(self.cfg.get("host")):])).match(str(r.url)):
+                if compile(h.replace("$HOST", str(r.host)[str(r.host).find(self.cfg.get("base")):])).match(str(r.url)):
                     return web.Response(**t.run(self, r))
         return web.Response(body=f"usergroup homepage")
     async def start_http(self):
