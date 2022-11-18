@@ -9,7 +9,7 @@ def run(ctx, r):
 
     if not(user in ctx.auth.get_real_users()):
         return {
-            "body": f"<h3>404! no such user!</h3><br>consult <b>users.{ctx.cfg.get('host')}</b> to see all registered users", 
+            "body": f"<h3>404! no such user!</h3><br>consult <b>users.{ctx.cfg.get('base')}</b> to see all registered users", 
             "status": 404, "content_type": "text/html"
         }
     
