@@ -1,3 +1,6 @@
+# all plugins have two critical components: `hooks`, which is a list of regex matches that identify
+#  the URL range this plugin catches, and `run`, which is called on match using the framework context
+#  (i.e. the main class) and a copy of the HTTP request.
 
 hooks = ["http.*:\/\/users.$HOST.*"]
 
